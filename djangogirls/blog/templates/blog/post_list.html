@@ -1,0 +1,40 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+  <div class="post">
+  <h1><font color=blue>최신 목차</font></h1>
+  {% for post in posts %}
+  <ul>
+  <li><b>{{post}}</b><br/></li>
+  </ul>
+  {% endfor %}<hr/>
+  <!-- 이렇게 하는 이유는 자료를 하나씩 받아서 나오게 하기 위해서이다. -->
+  <!-- 만약에 {{post}}만 쓰게 된다면 딕셔너리 형식으로 한 세트만 나오게 될 것이다.  -->
+ </div>
+
+    {% for post in posts %}
+        <div class="post">
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            <!-- url을 통해 텍스트 내용을 안에 제목클릭을 통해서 다음 페이지에서 내용 설명을 보여준다. -->
+            <div class="date">
+                published_date:{{ post.published_date }}<br/>
+                created_date: {{ post.created_date}}
+            </div><hr/>
+        </div>
+    {% endfor %}
+    
+<div>
+<h2><i>My first post</i></h2>
+<p>My first life is surprising life.</p>
+<p>published: 04.06.2019, 09:54</p>
+</div>
+<!-- div는 페이지 섹션을 의미합니다.  -->
+
+<div>
+<h2><i>My second post</i></h2>
+<p>두번째는 위의 영어를 한글로 해석해놓은 두번째 공간이다.</p>
+<p>published: 04.06.2019, 09:54</p>
+</div>
+    
+{% endblock %}
